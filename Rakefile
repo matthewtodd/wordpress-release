@@ -4,7 +4,7 @@ require 'rake/rdoctask'
 $:.unshift File.join(File.dirname(__FILE__), 'lib')
 require 'wordpress/release'
 
-spec = Gem::Specification.new do |spec| 
+spec = Gem::Specification.new do |spec|
   spec.name             = 'wordpress-release'
   spec.version          = Wordpress::Release::VERSION
   spec.summary          = "Upgrades a directory to Wordpress #{Wordpress::Release::VERSION}."

@@ -15,11 +15,11 @@ module Wordpress #:nodoc:
     def contents(*parts)
       `tar zxfO #{TARBALL} #{File.join('wordpress', *parts)}`
     end
-    
+
     def upgrade(directory=Dir.pwd)
       system 'mkdir', '-p', tmp
       system 'tar', 'zxf', TARBALL, '--directory', tmp
-      
+
       Dir.chdir(directory) do
         system 'rm', '-r', *wordpress_files if wordpress_files.any?
         system 'cp', '-r', File.join(tmp, 'wordpress', '.'), '.'
@@ -27,9 +27,9 @@ module Wordpress #:nodoc:
 
       system 'rm', '-r', tmp
     end
-    
+
     private
-    
+
     def tmp
       @tmp ||= File.join(Dir.tmpdir, "wordpress.#{Process.pid}")
     end
@@ -51,7 +51,7 @@ module Wordpress #:nodoc:
       # but do delete these
       files += Dir.glob('wp-content/themes/classic')
       files += Dir.glob('wp-content/themes/default')
-      
+
       # if they exist
       files.select { |file| File.exist?(file) }
     end
